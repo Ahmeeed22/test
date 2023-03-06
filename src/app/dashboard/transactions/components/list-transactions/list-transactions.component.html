@@ -83,7 +83,7 @@
                   <th *ngIf="colDisplay.bd">Balance Due</th>
                   <th *ngIf="colDisplay.p">Profite</th>
                   <th *ngIf="colDisplay.date">Date</th>
-                  <th *ngIf="colDisplay.acts" colspan="2">Actions</th>
+                  <th *ngIf="colDisplay.acts" >Actions</th>
                 </tr>
               </thead>
               <tfoot class="text-center">
@@ -99,7 +99,7 @@
                     <th *ngIf="colDisplay.bd" class="table-info sumInfo">{{sumCols?.balanceDue}}</th>
                     <th *ngIf="colDisplay.p" class="table-info sumInfo">{{sumCols?.total_profite}}</th>
                     <th *ngIf="colDisplay.date">--</th>
-                    <th *ngIf="colDisplay.acts" colspan="2">--</th>
+                    <th *ngIf="colDisplay.acts" colspan="1">--</th>
                 </tr>
                 </tfoot>
               <tbody>
@@ -115,8 +115,8 @@
                   <td style="text-align: center;" *ngIf="colDisplay.bd">{{transaction.balanceDue}}</td>
                   <td style="text-align: center;" *ngIf="colDisplay.p">{{transaction.profite}}</td>
                   <td style="text-align: center;" *ngIf="colDisplay.date"> {{transaction.createdAt | date}}</td>
-                  <td style="text-align: center;"  *ngIf="colDisplay.acts" colspan="2"><button (click)="updateTask($event,transaction)" class="btn btn-info" >Update</button>
-                 <button (click)="deleteTask(transaction.id)" class="btn btn-danger">Delete</button></td>
+                  <td style="text-align: center;"  *ngIf="colDisplay.acts" colspan="1"><button (click)="updateTask($event,transaction)" class="btn btn-info" >Update</button>
+                 <button *ngIf="false" (click)="deleteTask(transaction.id)" class="btn btn-danger">Delete</button></td>
                 </tr>
               </tbody>
             </table>
