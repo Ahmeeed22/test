@@ -56,6 +56,7 @@ export class ListTransactionsComponent implements OnInit {
   myDate:any
   sumCols:any;
   customerName:any ;
+  invoiceNo!:number;
   constructor(
     private _TransactionsService:TransactionsService  
     ,private toaster:ToastrService
@@ -92,6 +93,7 @@ export class ListTransactionsComponent implements OnInit {
 
 // print invoice
   printTest(x:any,y:any) {
+      this.invoiceNo=this.generateRandom();
       this.myDate = new Date();
       this.spinnerService.show()
       this.immg.nativeElement.classList.toggle('d-block');
@@ -249,5 +251,12 @@ export class ListTransactionsComponent implements OnInit {
 
   print(){
     window.print()
+  }
+  generateRandom(min :number = 500, max:number = 5000) {
+    let difference = max - min;
+    let rand = Math.random();
+    rand = Math.floor( rand * difference);
+    rand = rand + min;
+    return rand;
   }
 }
