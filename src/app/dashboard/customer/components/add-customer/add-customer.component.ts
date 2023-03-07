@@ -94,6 +94,19 @@ export class AddCustomerComponent implements OnInit {
           next : (res)=>{
             if(res.allProfite[0].balanceDue ){
               this.toaster.warning(`failed update Customer because he have balance = ${res.allProfite[0].balanceDue} at ${res.result.count} transactions`,"success")
+            }else{
+              this._CustomersService.updateCustomer(this.data.id  ,data).subscribe({
+                next: res=>{
+                  console.log(res);
+                  
+                  this.toaster.success("success update Customer","success")
+                  this.dialog.close(true)
+                },
+                error:(err)=>{
+                  console.log(err);
+                  
+                }
+              })
             }
           }
         })
