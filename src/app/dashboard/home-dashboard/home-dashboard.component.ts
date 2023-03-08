@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomersService } from '../customer/customers.service';
 import { TransactionsService } from '../transactions/transactions.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { TransactionsService } from '../transactions/transactions.service';
   styleUrls: ['./home-dashboard.component.scss']
 })
 export class HomeDashboardComponent implements OnInit {
+  pettyCash=0;
   detailsProfite:any={}
   count:number=0;
   filteration:any
@@ -14,9 +16,9 @@ export class HomeDashboardComponent implements OnInit {
   countMonthly:number= 0 ;
   amountCash:number= 0 ;
   dateToday=new Date() ;
-
   constructor(
-    private _TransactionsService:TransactionsService  
+    private _TransactionsService:TransactionsService  ,
+    private _CustomersService:CustomersService
   ) { 
     var start = new Date();
     start.setUTCHours(0,0,0,0);
@@ -28,11 +30,12 @@ export class HomeDashboardComponent implements OnInit {
       startedDate :start.toISOString(),
       endDate : end.toISOString() ,
     }
+    this.getPettyCash();
   }
 
   ngOnInit(): void {
-    this.getAllTransactions()
-    this.getAllTransactionsMonthly()
+    this.getAllTransactions();
+    this.getAllTransactionsMonthly();
   }
 
   getAllTransactions(){
@@ -66,6 +69,15 @@ export class HomeDashboardComponent implements OnInit {
         this.countMonthly=res.result.count
         this.detailsProfiteMonthly={...res.allProfite[0]}
         this.amountCash=this.detailsProfiteMonthly.paymentAmount - this.detailsProfiteMonthly.total_price_without_profite 
+      }
+    })
+  }
+
+  getPettyCash(){
+    this._CustomersService.getAllCustomersSearch({name:'petty Cash'}).subscribe({
+      next : (res)=>{
+        console.log(res);
+        this.pettyCash=res.result[0].transactions[0]?.paymentAmount ||0 ;
       }
     })
   }
