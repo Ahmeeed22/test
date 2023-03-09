@@ -1,5 +1,5 @@
 import { PageEvent } from '@angular/material/paginator';
-import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
+import { Component, OnInit ,ViewChild,ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransactionsService } from '../../transactions.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,7 @@ import { CustomersService } from 'src/app/dashboard/customer/customers.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import * as es6printJS from "print-js";
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DetailsComponent } from '../details/details.component';
 
 
 @Component({
@@ -94,7 +95,7 @@ export class ListTransactionsComponent implements OnInit {
 
 // print invoice
   printTest(x:any,y:any) {
-      this.invoiceNo=this.generateRandom();
+    this.invoiceNo=this.generateRandom();
       this.myDate = new Date();
       this.spinnerService.show()
       this.immg.nativeElement.classList.toggle('d-block');
@@ -136,9 +137,12 @@ export class ListTransactionsComponent implements OnInit {
     //   // NOTE : This Paris need to be in options of p-MultiSelect otherwise chip will not populate.
     // }
   getAllTransactions(){
+    console.log(this.generateRandom());
+    
     this.filteration.offset=this.filteration.offset > 0 ? this.filteration.offset - 1 : 0 
     this._TransactionsService.getAllTransactions(this.filteration).subscribe({
       next:(res)=>{
+        console.log(res);
         this.sumCols={...res.allProfite[0]}
         this.length=res.result.count
         this.dataSource=res.result.rows
@@ -171,6 +175,18 @@ export class ListTransactionsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getAllTransactions()
+    });
+
+  }
+  showDetails(e:any,ele:any){
+    const dialogRef = this.dialog.open(DetailsComponent, {
+      width:"60%",
+      disableClose:true,
+      data:ele,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.getAllTransactions()
     });
 
   }
@@ -260,4 +276,6 @@ export class ListTransactionsComponent implements OnInit {
     rand = rand + min;
     return rand;
   }
+  
+
 }

@@ -49,12 +49,12 @@
       defaultLabel="Select a City" optionLabel="name">
       </p-multiSelect>
     </form>
-    <button class="btn btn-primary  px-4  "(click)="printTest({ printable: 'print-section', type: 'html',style: '.parentt{width:95% ; margin:auto;}table tfoot tr ,table thead tr{background:#ccc;}table tfoot tr .sumInfo{border: 2px solid blue !important;}tbody{text-align:center; border: 2px solid blue;}table{background-image: url(https://ik.imagekit.io/2cvha6t2l9/bg.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677596175916); background-repeat: repeat;background-position: center center;width: 60%;height: 60%;color:#000, border:none !important;}tr{text-align:center;}td{text-align:center; border-top: 2px solid blue;font-size: larger;}.headinvoice{display:flex ;justify-content: space-between;}h2{padding:10px ; text-align:center;}' },immg)">print</button>
+    <button class="btn btn-primary  px-4  "(click)="printTest({ printable: 'print-section', type: 'html',style: '.parentt{width:95% ; margin:auto;}table tfoot tr ,table thead tr{background:#ccc;}table tfoot tr .sumInfo{border: 2px solid blue !important;}tbody{text-align:center; border: 2px solid blue;}table{background-image: url(https://ik.imagekit.io/2cvha6t2l9/bg.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677596175916); background-repeat: repeat;background-position: center center;width: 60%;height: 60%;color:#000, border:none !important;}tr{text-align:center;}td{text-align:center; border-top: 2px solid blue;font-size: larger;}.headinvoice{display:flex ;justify-content: space-between;}h2{padding:10px ; text-align:center;}.pparrent{display:flex ;justify-content: space-between; }' },immg)">print</button>
   </div>
 <div class="my-2 mx-4 pb-2 mat-elevation-z8" >
 
     <div class="listBox" >
-      <div class="table-responsive"  id="print-section" >
+      <div class="table-responsive"  id="print-section">
         <div class="parentt" >
           <img #immg style="height: 120px;"   src="https://ik.imagekit.io/2cvha6t2l9/headeriv.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1677688005636" class="w-100 headerInvoiceImg  headinvoice d-none" alt="header of invoice" srcset="">
           <div #infoo class=" d-none headinvoice">
@@ -83,7 +83,7 @@
                   <th *ngIf="colDisplay.bd">Balance Due</th>
                   <th *ngIf="colDisplay.p">Profite</th>
                   <th *ngIf="colDisplay.date">Date</th>
-                  <th *ngIf="colDisplay.acts" >Actions</th>
+                  <th *ngIf="colDisplay.acts" colspan="1">Actions</th>
                 </tr>
               </thead>
               <tfoot class="text-center">
@@ -116,7 +116,8 @@
                   <td style="text-align: center;" *ngIf="colDisplay.p">{{transaction.profite}}</td>
                   <td style="text-align: center;" *ngIf="colDisplay.date"> {{transaction.createdAt | date}}</td>
                   <td style="text-align: center;"  *ngIf="colDisplay.acts" colspan="1"><button (click)="updateTask($event,transaction)" class="btn btn-info" >Update</button>
-                 <button *ngIf="false" (click)="deleteTask(transaction.id)" class="btn btn-danger">Delete</button></td>
+                 <button *ngIf="false" (click)="deleteTask(transaction.id)" class="btn btn-danger">Delete</button>
+                 <button (click)="showDetails($event,transaction)" class="btn btn-outline-secondary text-secondary hhover">Details</button></td>
                 </tr>
               </tbody>
             </table>
