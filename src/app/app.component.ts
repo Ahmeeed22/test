@@ -10,6 +10,8 @@ export class AppComponent  {
   lang :any;
   typeSelected:any;
   constructor(private translate: TranslateService , private spinnerService: NgxSpinnerService ) {
+    console.log("hello from new dyploy");
+    
     this.typeSelected = 'ball-fussion';
     if("lang" in localStorage){
       this.lang =localStorage.getItem('lang')
