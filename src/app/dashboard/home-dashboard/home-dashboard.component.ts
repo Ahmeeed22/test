@@ -43,6 +43,7 @@ export class HomeDashboardComponent implements OnInit {
     this._TransactionsService.getAllTransactions(this.filteration).subscribe({
       next:(res)=>{
         this.count=res.result.count
+        console.log(res);
         this.detailsProfite={...res.allProfite[0]}
       }
     })
@@ -68,6 +69,7 @@ export class HomeDashboardComponent implements OnInit {
       next:(res)=>{
         this.countMonthly=res.result.count
         this.detailsProfiteMonthly={...res.allProfite[0]}
+        console.log(this.detailsProfiteMonthly);
         this.amountCash=this.detailsProfiteMonthly.paymentAmount - this.detailsProfiteMonthly.total_price_without_profite 
       }
     })
