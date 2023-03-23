@@ -37,7 +37,6 @@ getAllCustomers(filter?:any){
       this.dataSource = new MatTableDataSource<any>(res.result);
       this.dataSource.paginator = this.paginator;
       this.toaster.success("success get Customers","success")
-      console.log(res);
     }
   })
 }
