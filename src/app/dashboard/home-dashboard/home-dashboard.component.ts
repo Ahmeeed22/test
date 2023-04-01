@@ -43,7 +43,6 @@ export class HomeDashboardComponent implements OnInit {
     this._TransactionsService.getAllTransactions(this.filteration).subscribe({
       next:(res)=>{
         this.count=res.result.count
-        console.log(res);
         this.detailsProfite={...res.allProfite[0]}
       }
     })
@@ -69,7 +68,6 @@ export class HomeDashboardComponent implements OnInit {
       next:(res)=>{
         this.countMonthly=res.result.count
         this.detailsProfiteMonthly={...res.allProfite[0]}
-        console.log(this.detailsProfiteMonthly);
         this.amountCash=this.detailsProfiteMonthly.paymentAmount - this.detailsProfiteMonthly.total_price_without_profite 
       }
     })
@@ -79,9 +77,7 @@ export class HomeDashboardComponent implements OnInit {
     this._CustomersService.getAllCustomersSearch({name:'petty Cash'}).subscribe({
       next : (res)=>{
         console.log(res);
-        // this.pettyCash=res.result[0].transactions[0]?.paymentAmount ||0 ;
         this.pettyCash=res.result[0]?.transactions[0]?.paymentAmount ||0 ;
-
       }
     })
   }

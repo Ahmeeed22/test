@@ -82,6 +82,7 @@ export class AddTransactionComponent implements OnInit {
       paymentAmount : [this.data?.paymentAmount || 0 , Validators.required],
       profite : [this.data?.profite || 0 , Validators.required],
       price : [this.data?.price || 0 , Validators.required],
+      sponsoredName : [this.data?.sponsoredName || null , Validators.required],
     })
     this.formValues = {...this.newTransactionForm.value}
   }
@@ -163,7 +164,7 @@ export class AddTransactionComponent implements OnInit {
 
         this._TransactionsService.addTransaction({...this.newTransactionForm.value ,customer_id,service_id,company_id , admin_id}).subscribe({
           next :(res)=>{
-         
+            console.log(res);
             
             this.toaster.success("success add transaction","success")
             this.dialog.close(true)
@@ -178,14 +179,14 @@ export class AddTransactionComponent implements OnInit {
   }
 
   updateTransaction(){
-
+    console.log(this.newTransactionForm);
     
     if (this.testChange() && this.newTransactionForm.valid) { 
       let data=this.gatheringData()? this.gatheringData() : null
-      let {company_id ,balanceDue,paymentAmount,...newObject }=data
-      this._TransactionsService.updateTransaction(this.data.id  ,{balanceDue,paymentAmount}).subscribe({
+      let {company_id ,balanceDue,paymentAmount,sponsoredName,...newObject }=data
+      this._TransactionsService.updateTransaction(this.data.id  ,{balanceDue,paymentAmount,sponsoredName}).subscribe({
         next: res=>{
-
+          console.log(res);
           this.toaster.success("success update transaction","success")
           this.dialog.close(true)
         }
