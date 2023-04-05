@@ -29,6 +29,8 @@ export class LayoutComponent{
       this.hiA()
     },6000)
     this.getAllReminders()
+    this._ReminderService.IsReminder.subscribe(()=>{
+    })
   }  
 
   toggleSidebar(){
@@ -58,8 +60,7 @@ export class LayoutComponent{
           if(!filter&&res.result.rows.length==0){
             this._ReminderService.IsReminder.next(false)
           }
-          this._ReminderService.IsReminder.subscribe(()=>{
-          })
+
          
         }
       })
