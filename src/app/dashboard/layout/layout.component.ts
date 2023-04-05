@@ -23,6 +23,7 @@ export class LayoutComponent{
     }) 
    this._ReminderService.IsReminder.subscribe(()=>{
     this.isReminder=this._ReminderService.IsReminder.getValue() ;
+    console.log(this._ReminderService.IsReminder.getValue(),"test reminder exist");
     console.log(this.isReminder);
    }) 
     setInterval(()=>{
