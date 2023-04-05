@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,8 +9,9 @@ import { environment } from 'src/environments/environment';
 export class ReminderService {
 
   constructor(private http:HttpClient) { }
-  
+  public IsReminder=new BehaviorSubject<boolean>(false) ;
   getAllReminders(filter:any):Observable<any>{
+
     return this.http.post(`${environment.baseApi}allReminders`,filter)
   }
 
