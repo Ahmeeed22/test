@@ -18,7 +18,7 @@ export class ListReminderComponent implements OnInit {
   @ViewChild('name') name !: ElementRef;
   dataSource !: any;
   displayedColumns: string[] = ['index', 'companyName', 'sponsored', 'message', 'service', 'status', 'dateExpire', 'action'];
-
+  minDate:any= new Date(1990, 0, 1);
   constructor(private _ReminderService: ReminderService
     , private toaster: ToastrService
     , public dialog: MatDialog
@@ -28,7 +28,10 @@ export class ListReminderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  makeValidationMax(start:any){
+    console.log("test",start);
+    this.minDate=new Date(start);
+  }
   getAllReminders(filter?: any) {
 
     this._ReminderService.getAllReminders(filter).subscribe({
