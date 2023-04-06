@@ -80,7 +80,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 class="m-b-25">Total Profite</h6>
-                            <h3 class="f-w-700 text-c-blue">{{detailsProfiteMonthly.total_profite | currency:' AED '}}</h3>
+                            <h3 class="f-w-700 text-c-blue">{{detailsProfiteMonthly.total_profite?detailsProfiteMonthly.total_profite:0 | currency:' AED '}}</h3>
                             <p class="m-b-0">from <span>{{this.filteration.startedDate |date}}</span> to Now</p>
                         </div>
                         <div class="col-auto">
@@ -97,7 +97,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 class="m-b-25">Total Balance</h6>
-                            <h3 class="f-w-700 text-c-green">{{detailsProfiteMonthly.balanceDue | currency:' AED '}}</h3>
+                            <h3 class="f-w-700 text-c-green">{{detailsProfiteMonthly.balanceDue?detailsProfiteMonthly.balanceDue:0 | currency:' AED '}}</h3>
                             <p class="m-b-0">from <span>{{this.filteration.startedDate |date}}</span> to Now</p>
                         </div>
                         <div class="col-auto">
@@ -113,7 +113,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 class="m-b-25">Total Current Cash</h6>
-                            <h3 class="f-w-700 text-c-yellow ">{{amountCash | currency:' AED '}}</h3>
+                            <h3 class="f-w-700 text-c-yellow ">{{amountCash?amountCash:0 | currency:' AED '}}</h3>
                             <p class="m-b-0">from <span>{{this.filteration.startedDate |date}}</span> to Now</p>
                         </div>
                         <div class="col-auto">
@@ -146,7 +146,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 class="m-b-25">Petty Cash</h6>
-                            <h3 class="f-w-700  text-c-blue">{{pettyCash}}</h3>
+                            <h3 class="f-w-700  text-c-blue">{{pettyCash?pettyCash:0 | currency:' AED '}}</h3>
                             <p class="m-b-0">from <span>{{this.filteration.startedDate |date}}</span> to Now</p>
                         </div>
                         <div class="col-auto">
