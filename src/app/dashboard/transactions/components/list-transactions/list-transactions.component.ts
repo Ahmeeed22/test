@@ -33,6 +33,7 @@ export class ListTransactionsComponent implements OnInit {
   @ViewChild('immg') immg !: ElementRef;
   @ViewChild('infoo') infoo !: ElementRef;
   @ViewChild('footerInvoice') footerInvoice !: ElementRef;
+  @ViewChild('footerInvoice2') footerInvoice2 !: ElementRef;
 // pagination setup
   length = 50;
   pageSize = 10;
@@ -103,6 +104,7 @@ export class ListTransactionsComponent implements OnInit {
       this.spinnerService.show()
       this.immg.nativeElement.classList.toggle('d-block');
       this.footerInvoice.nativeElement.classList.toggle('d-none');
+      this.footerInvoice2.nativeElement.classList.toggle('d-none');
       this.infoo.nativeElement.classList.toggle('d-block');
       setTimeout(() => {
         es6printJS(x);
@@ -113,6 +115,7 @@ export class ListTransactionsComponent implements OnInit {
         this.immg.nativeElement.classList.toggle('d-block');
         this.infoo.nativeElement.classList.toggle('d-block');
         this.footerInvoice.nativeElement.classList.toggle('d-none');
+        this.footerInvoice2.nativeElement.classList.toggle('d-none');
         this.spinnerService.hide()
       }, 400);
     }
