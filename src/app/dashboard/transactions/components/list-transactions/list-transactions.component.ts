@@ -145,6 +145,7 @@ export class ListTransactionsComponent implements OnInit {
   getAllTransactions(){
     console.log(this.generateRandom());
     
+    console.log("before",(1+this.pageIndex),(this.filteration.offset));
     this.filteration.offset=this.filteration.offset > 0 ? this.filteration.offset - 1 : 0 
     this._TransactionsService.getAllTransactions(this.filteration).subscribe({
       next:(res)=>{
@@ -155,6 +156,10 @@ export class ListTransactionsComponent implements OnInit {
         this.toaster.success("success get Transactions","success")
       }
     })
+    // this.filteration.offset++
+    console.log("filteration.offset",this.filteration.offset);
+
+    
   }
   getCustomers(){
     this._CustomersService.getAllCustomers().subscribe({
